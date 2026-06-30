@@ -5,6 +5,9 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 @Entity
 @Table(name = "reviews")
 @Data
@@ -14,9 +17,11 @@ import java.util.UUID;
 public class Review {
 
     @Id
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     @GeneratedValue
     private UUID id;
 
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     @NotNull(message = "El ID del destino es obligatorio")
     @Column(name = "destination_id", nullable = false)
     private UUID destinationId;
